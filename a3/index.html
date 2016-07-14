@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Assignment 3: Web Services</title>
+		<link rel="stylesheet" type="text/css" href="./style.css"></link>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+			  $(':submit').on('click', function() { // This event fires when a button is clicked
+			    var button = $(this).val();
+
+    			if (button == 'getTweets') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/tweets', // load to the localhost
+				      dataType: 'json',
+				    })
+				    .done(function(data) {
+				    	$('#requestDetails').html('');	// Used to clear the page
+				    	$('#requestDetails').append('<strong>List of tweets:</strong> <br/><br/>');
+
+				    	for (var i in data) {
+				    		$('#requestDetails').append('<strong>Text:</strong> ' + data[i] + '<br/><br/>');
+				    	}
+			    	});
+
+			    } else if (button == 'getUsers') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/users', // load to the localhost
+				      dataType: 'json',
+				    })
+				    .done(function(data) {
+				    	$('#requestDetails').html(''); 	// Used to clear the page
+				    	$('#requestDetails').append('<strong>Name of the Twitter users:</strong> <br/><br/>');
+
+				    	for (var i in data) {
+				    		$('#requestDetails').append('<strong>Name:</strong> ' + data[i] + '<br/><br/>');
+				    	}
+			    	});
+
+				} else if (button == 'getLinks') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/links', 	// load to the localhost
+				      dataType: 'json',
+				    })
+				    .done(function(data) {
+				    	$('#requestDetails').html(''); // Used to clear the page
+				    	$('#requestDetails').append('<strong>List of links mentioned:</strong> <br/><br/>');
+
+				    	for (var info in data) {
+				    		$('#requestDetails').append('<strong>URL:</strong> ' + data[info] + '<br/><br/>');
+				    	}
+			    	});
+
+				} else if (button == 'getTweetID') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/getTweetID/' + document.getElementById("tweetID").value.toString(), // load to the localhost
+				      dataType: 'json',
+				    })
+
+				    .done(function(data) {
+
+				    	if (data.length == 0) {
+				    		$('#requestDetails').html('');	// Used to clear the page
+				    		$('#requestDetails').append('<strong>No match found!!!!!!!</strong> <br/><br/>');	
+
+				    	} else {
+
+				    		// Clear it just in case
+					    	$('#requestDetails').html('');
+					    	$('#requestDetails').append('<strong>Tweet details:</strong> <br/><br/>');
+
+					    	// Get the tweet, who posted it, when it was made, and the timezone of it
+				    		$('#requestDetails').append('<strong>Tweet:</strong> ' + data[0] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Screen Name:</strong> ' + data[1] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Created Time:</strong> ' + data[2] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Timezone:</strong> ' + data[3] + '<br/><br/>');			
+			    		}    		
+			    	});
+
+				} else if (button == 'getUserByName') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/getUserByName/' + document.getElementById("screenName").value.toString(), // load to the localhost
+				      dataType: 'json',
+				    })
+
+				    .done(function(data) {
+
+				    	if (data.length == 0) {
+				    		$('#requestDetails').html('');	// Used to clear the page
+				    		$('#requestDetails').append('<strong>No match found!!!!!!!</strong> <br/><br/>');	
+
+				    	} else {
+
+					    	$('#requestDetails').html('');
+					    	$('#requestDetails').append('<strong>User details:</strong> <br/><br/>');					    	
+
+				    		// Lastly, add the name, screen name, location, and timezone of the user
+				    		$('#requestDetails').append('<strong>Name:</strong> ' + data[0] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Screen Name:</strong> ' + data[1] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Location:</strong> ' + data[2] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Description:</strong> ' + data[3] + '<br/><br/>');	
+				    		$('#requestDetails').append('<strong>Timezone:</strong> ' + data[4] + '<br/><br/>');			
+				    		$('#requestDetails').append('<strong>Number of Followers:</strong> ' + data[5] + '<br/><br/>');	
+				    		$('#requestDetails').append('<strong>Number of Friends:</strong> ' + data[6] + '<br/><br/>');	
+				    		$('#requestDetails').append('<strong>Number of Favourites:</strong> ' + data[7] + '<br/><br/>');	
+				    		$('#requestDetails').append('<strong>Number of Statuses Made:</strong> ' + data[8] + '<br/><br/>');	
+				    		$('#requestDetails').append('<strong>Date Created:</strong> ' + data[9] + '<br/><br/>');	
+
+			    		}    		
+			    	});
+
+			    } else if (button == 'getAllTweetsByUserName') {		// Different APIS with button clicks
+				    $.ajax({ // ajax call starts
+				      url: 'http://127.0.0.1:3000/getAllTweetsByUserName/' + document.getElementById("screenName2").value.toString(), // load to the localhost
+				      dataType: 'json',
+				    })
+
+				    .done(function(data) {
+
+				    	if (data.length == 0) {
+				    		$('#requestDetails').html('');	// Used to clear the page
+				    		$('#requestDetails').append('<strong>No match found!!!!!!!</strong> <br/><br/>');	
+
+				    	} else {
+
+					    	$('#requestDetails').html('');
+					    	
+					    	$('#requestDetails').append('<strong>User details:</strong> <br/><br/>');	
+				    		// Add the name, screen name
+				    		$('#requestDetails').append('<strong>Name:</strong> ' + data[data.length - 2] + '<br/><br/>');
+				    		$('#requestDetails').append('<strong>Screen Name:</strong> ' + data[data.length - 1] + '<br/><br/>');	
+
+				    		for (var info = 0; info < data.length - 2; info = info + 2) {	// Get the tweets and created when, increment by 2 cause of how they're stored
+				    			$('#requestDetails').append('<strong>Tweet:</strong> ' + data[info] + '<br/>');
+				    			$('#requestDetails').append('<strong>Created at:</strong> ' + data[info + 1] + '<br/><br/>');
+				    		}
+	
+			    		}    		
+			    	});
+				}
+
+				return false;	// prevent page from refreshing
+			   });
+			});
+		</script>
+
+
+	</head>
+
+	<body>
+
+	<h2 id="pageTitle">Assignment 3: Web Services (REST API)</h2>
+
+    <!--This div is to add request GET commands.-->
+    <div id="GETRequests">				<!-- Multiple buttons -->
+        <h3>List of Requests:</h3>
+        <button value="getTweets">Get all tweets</button>
+        <br/>
+        <button value="getUsers">Get a list of all users</button>
+        <br/>
+        <button value="getLinks">Get a list of all links used in tweets</button>
+        <br/>
+        <button value="getTweetID">Get a tweets detail with an ID</button>
+        <input type="text" id="tweetID" placeholder="Insert the tweet ID" name="tweetID"/>
+        <br/>
+        <button value="getUserByName">Get a users detail with a username</button>
+        <input type="text" id="screenName" placeholder="Insert the user screen name" name="screenName"/>
+        <br/>
+        <button value="getAllTweetsByUserName">Show all tweets by a user</button>
+        <input type="text" id="screenName2" placeholder="Insert the user screen name" name="screenName2"/>
+        <br/>
+    </div>
+
+    <!-- Show the details of the requests. -->
+	<div id="list">
+		<div id="info">
+			<h3>Details:</h3>
+		</div>
+
+		<div id="requestDetails">
+		</div>
+    </div>
+
+	<br/>
+
+	</body>
+
+</html>

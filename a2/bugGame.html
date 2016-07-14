@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignemnt 2: Tap Tap Bug</title>
+</head>
+
+
+<body>
+<font color="red">Tap <font color="black">Tap <font color="orange">Bug</font>
+<div class="content" id="gameContent">
+    <canvas id="game" width = "400" height = "700" style="border:1px solid #d3d3d3; z-index: 1">
+	Your browser does not support the canvas element.
+    </canvas>
+
+    <input type="button" style="z-index: 99; position: absolute; top: 100px; left: 160px" value="Play/Pause" id="button"/>
+    <p style="z-index: 99; position: absolute; top: 70px; left: 100px" id="levelText">Level:</p>
+    <input type="radio" style="z-index: 99; position: absolute; top: 80px; left: 170px" value="Level 1" name="level" id="level1" checked="checked"/>
+    <p style="z-index: 99; position: absolute; top: 80px; left: 178px" id="one">1</p>
+    <input type="radio" style="z-index: 99; position: absolute; top: 80px; left: 210px" value="Level 2" name="level" id="level2"/>
+    <p style="z-index: 99; position: absolute; top: 80px; left: 218px" id="two">2</p>
+    <input type="button" style="z-index: 99; position: absolute; top: 150px; left: 160px" value="Start game!" onclick="prepareGame()" id="startButton"/>
+</div>
+</body>
+<script src="a2.js"></script>
+</html>

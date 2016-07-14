@@ -1,0 +1,56 @@
+body {
+	background-color: #EFF2FB;
+	text-align: center;
+	margin: auto;
+	width: 100%;
+    font-family:"Helvetica";
+}
+
+#pageTitle {
+    font-family:"Helvetica";
+    padding: 1px;
+    border-radius: 10px;
+    border: 10px solid #6064e2;
+    background: #c6d694;
+    word-spacing: 2px;
+}
+
+h3 {
+    font-family:"Helvetica";
+    word-spacing: 1.5px;
+    text-transform: capitalize;
+    
+}
+
+#GETRequests {
+    border-radius: 10px;
+    border: 5px solid #6064e2;
+    background: #c6d694;
+    word-spacing: 2px;
+    float: left;
+    width: 29%;
+    margin-right: 10px;
+
+}
+
+#info {
+	line-height: 1cm;
+	border-bottom: 1px solid;
+	background: #c6d694;
+	text-align: center;
+    height: 1cm;
+}
+
+#list {
+    width: 68%;
+    float: right;
+    border-radius: 10px;
+    border: 5px solid #6064e2;
+    background: #c6d694;
+    margin-left: 5px;
+    
+}
+
+#requestDetails {
+    font-family: "Verdana";
+}
